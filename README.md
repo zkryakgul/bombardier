@@ -6,7 +6,7 @@ Pre info:
 br0 = openvswitch bridge
 
 Run container and add ovs port to it :
-```
+```sh
 for i in `seq 0 10`;do docker run -d --privileged -c 0 --net=none --cap-add NET_ADMIN --name bomb$i -it zkryakgul/bombardier &&\
 ovs-docker add-port br0 eth0 bomb$i --ipaddress=10.10.10.$(($i+50))/24 && \
 docker exec -d -it bomb$i /sbin/ethtool -K eth0 tx off rx off 
